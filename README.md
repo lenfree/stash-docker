@@ -1,7 +1,7 @@
 Role Name: stash-docker
 ========
 
-This role is to manage atlassian-stash Docker container.
+This role is to manage Atlassian Stash stack in a Docker container.
 
 
 Requirements
