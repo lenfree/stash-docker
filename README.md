@@ -3,11 +3,13 @@ Role Name: stash-docker
 
 This role is to manage Atlassian Stash stack in a Docker container.
 
+Tested in EL6.
 
 Requirements
 ------------
 
 To use ansible docker module, docker-py >= 0.3.0 is required. 
+
 Stash, Nginx and data containers should be available from your repository/registry.
 
 Role Variables
