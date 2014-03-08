@@ -13,9 +13,12 @@ Role Variables
 
 stash_version, nginx_version, storage_version is use to replace tag versioning.
 
+Note: Replace myregistry with your registry/repo name.
 
 Dependencies
 ------------
+
+Make sure you have built your Stash, Nginx, data containers and they are available from your docker repository.
 
 
 Example Playbook
