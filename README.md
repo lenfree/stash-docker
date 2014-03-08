@@ -3,7 +3,7 @@ Role Name: stash-docker
 
 This role is to manage Atlassian Stash stack in a Docker container.
 
-Tested in EL6.
+Tested on EL6.
 
 Requirements
 ------------
