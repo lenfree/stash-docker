@@ -1,12 +1,14 @@
-Role Name: atlassian-stash-container
+Role Name: stash-docker
 ========
 
-This role is to build atlassian-stash container, start and link with its data container.
+This role is to manage atlassian-stash Docker container.
+
 
 Requirements
 ------------
 
 To use ansible docker module, docker-py >= 0.3.0 is required. 
+Stash, Nginx and data containers should be available from your repository/registry.
 
 Role Variables
 --------------
@@ -18,7 +20,6 @@ Note: Replace myregistry with your registry/repo name.
 Dependencies
 ------------
 
-Make sure you have built your Stash, Nginx, data containers and they are available from your docker repository.
 
 
 Example Playbook
@@ -28,11 +29,11 @@ Example Playbook
    hosts: vagrant
    gather_facts: true
    roles:
-       -  role: manage-atlassian-stash-container
+       -  role: stash-docker
 License
 -------
 
-
+GPLv2
 Author Information
 ------------------
 
