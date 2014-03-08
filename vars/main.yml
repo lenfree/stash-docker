@@ -1,0 +1,9 @@
+---
+
+myregistry: 'myname'
+
+
+stash_version: '1.0'
+nginx_version: '1.0'
+
+storage_version: 'latest'

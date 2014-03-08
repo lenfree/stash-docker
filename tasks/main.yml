@@ -1,0 +1,38 @@
+---
+
+- name: stop Stash container
+  docker: image="{{ myregistry }}/atlassian-stash:{{ stash_version }}" name="atlassian-stash" state=absent
+  tags: stopstash
+  register: stopstashresult
+
+
+- name: stop Nginx container
+  docker: image="{{ myregistry }}/atlassian-stash:{{ stash_version }}"/nginx-reverse-proxy:{{ nginx_version }}" name="nginx" state=absent
+  tags: stopnginx
+  register: stopnginxresult
+  ignore_errors: true
+
+
+- name: Start Nginx storage container
+  docker: image="{{ myregistry }}/atlassian-stash:{{ stash_version }}"/storage:{{ nginx_version }}" name="nginx-storage" state=present hostname="nginx-storage"
+  tags: startnginxstorage
+  register: nginxstorageresult
+  ignore_errors: true
+
+
+- name: Start Stash storage container
+  docker: image="{{ myregistry }}/storage:{{ stash_version }}" name="atlassian-stash-storage" state=present hostname="stash-storage"
+  tags: startstashstorage    
+  ignore_errors: true
+  register: stashstorageresult
+
+
+- name: Start Stash container
+  docker: image="{{ myregistry }}/atlassian-stash:{{ stash_version }}" hostname="atlassian-stash" name="atlassian-stash" state=present hostname="stash" volumes_from="atlassian-stash-storage" 
+  tags: startstash
+
+
+- name: Start Nginx container                                                            
+  docker: image="{{ myregistry }}/nginx-reverse-proxy:{{ nginx_version }}" name="nginx" state=present hostname="nginx" links="atlassian-stash:stash"  ports="{{ ansible_eth1.ipv4.address }}:80:80,{{ ansible_eth1.ipv4.address }}:443:443,{{ ansible_eth1.ipv4.address}}:22:7299"
+  tags: startnginx
+
